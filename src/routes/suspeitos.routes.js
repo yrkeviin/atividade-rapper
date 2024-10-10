@@ -47,7 +47,7 @@ suspeitosRoutes.post("/", (req, res) => {
     }
 
     //Validação se a pessoa inseriu um nome
-    if(!nome, !idade, !envolvimento) {
+    if(!nome || !idade || !envolvimento) {
         return res.status(400).send({ message: "Insira um nome!" });
     }
 
@@ -95,6 +95,10 @@ suspeitosRoutes.put("/:id", (req, res) => {
     }
 
     const { nome, idade, envolvimento, descricaoFisica } = req.body
+
+    if(!nome || !idade || !envolvimento){
+        return res.status(404).send({ message: "Preencha todos os campos!" });
+    }
 
     suspeito.nome = nome
     suspeito.idade = idade
