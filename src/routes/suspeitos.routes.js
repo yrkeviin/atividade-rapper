@@ -68,4 +68,18 @@ suspeitosRoutes.post("/", (req, res) => {
     return res.status(201).send({ message: "Suspeito cadastrado!", novoSuspeito} );
 });
 
-export default suspeitosRoutes;
+// Rota para buscar uma pessoa específica do array suspeitos
+suspeitosRoutes.get("/:id", (req, res) => {
+    const { id } = req.params
+
+    const suspeito = suspeitos.find((suspect) =>
+        suspect.id === Number(id)
+    );
+
+    if (!suspeito) {
+        return res.status(404).send({ message: "Suspeito não encontrado!" })
+    };
+
+    return res.status(200).send(suspeito)
+});
+
