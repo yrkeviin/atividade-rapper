@@ -97,7 +97,7 @@ suspeitosRoutes.put("/:id", (req, res) => {
     const { nome, idade, envolvimento, descricaoFisica } = req.body
 
     if(!nome || !idade || !envolvimento){
-        return res.status(404).send({ message: "Preencha todos os campos!" });
+        return res.status(400).send({ message: "Preencha todos os campos!" });
     }
 
     suspeito.nome = nome
